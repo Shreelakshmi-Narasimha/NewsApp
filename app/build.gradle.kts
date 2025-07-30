@@ -2,6 +2,8 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.kotlin.kapt)
+    alias(libs.plugins.hilt.android)
 }
 
 android {
@@ -36,7 +38,12 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.3"
+    }
+
 }
 
 dependencies {
@@ -60,6 +67,10 @@ dependencies {
 
     //Splash Api
     implementation("androidx.core:core-splashscreen:1.0.1")
+
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.compiler)
+    implementation(libs.hilt.navigation.compose)
 
     //Datastore
     implementation("androidx.datastore:datastore-preferences:1.1.7")
