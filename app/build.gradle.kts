@@ -67,6 +67,8 @@ dependencies {
 
     //Splash Api
     implementation("androidx.core:core-splashscreen:1.0.1")
+//Ui
+    implementation("com.google.accompanist:accompanist-systemuicontroller:0.36.0")
 
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
