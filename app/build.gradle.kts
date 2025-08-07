@@ -43,6 +43,9 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.3"
     }
+    kapt {
+        correctErrorTypes = true
+    }
 
 }
 
@@ -70,12 +73,13 @@ dependencies {
 //Ui
     implementation("com.google.accompanist:accompanist-systemuicontroller:0.36.0")
 //Retrofit
-    implementation("com.squareup.retrofit2:retrofit:3.0.0")
-    implementation("com.squareup.retrofit2:converter-gson:3.0.0")
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
 
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
     implementation(libs.hilt.navigation.compose)
+    kapt("androidx.hilt:hilt-compiler:1.0.0")
 
     //Paging 3
     val paging_version = "3.1.1"
@@ -84,4 +88,7 @@ dependencies {
 
     //Datastore
     implementation("androidx.datastore:datastore-preferences:1.1.7")
+
+    //Coil
+    implementation("io.coil-kt:coil-compose:2.7.0")
 }
