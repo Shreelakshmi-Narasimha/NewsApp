@@ -2,20 +2,37 @@ package com.example.newsapp.presentation.common
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import com.example.newsapp.domain.model.Article
+import com.example.newsapp.presentation.Dimens.ExtraSmallPadding2
 import com.example.newsapp.presentation.Dimens.mediumPadding1
-
+@Composable
 fun ArtclesList(
     modifier: Modifier= Modifier,
     article: LazyPagingItems<Article>,
     onClick:(Article)->Unit
 ) {
+var handlePagingResult=handlePagingResult(article)
+    if(handlePagingResult){
+        LazyColumn(modifier= Modifier.fillMaxSize(),
+            verticalArrangement =Arrangement.spacedBy(mediumPadding1) ,
+            contentPadding = PaddingValues(all =ExtraSmallPadding2 )
+        ) {
+           items(count = article.itemCount){
+               article[it]?.let {
+                   ArticleCard(article=it, onClick = { onClick(it) })
+               }
+           }
 
+        }
+    }
 
 }
 
@@ -36,9 +53,10 @@ fun handlePagingResult(
         false
         }
         error !=null->{
-
+EmptyScreen()
             false
         }
+        else->true
     }
 }
 @Composable
